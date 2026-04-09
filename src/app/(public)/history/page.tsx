@@ -9,7 +9,7 @@ export default function page() {
           <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-4">
             <div className="flex justify-between items-center">
               <h2 className="text-lg font-semibold">ธี่หยด 2</h2>
-              <span className={`text-sm text-green-400"`}>ชำระเงินสำเร็จ</span>
+              <span className={`text-sm text-green-400`}>ชำระเงินสำเร็จ</span>
             </div>
 
             <div className="text-sm text-zinc-400 mt-2">

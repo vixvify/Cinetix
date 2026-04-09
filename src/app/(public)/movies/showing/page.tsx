@@ -1,4 +1,5 @@
 "use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { MovieData } from "@/data/mock-data";
@@ -26,9 +27,10 @@ export default function page() {
               ></Image>
             </Link>
             <h1 className="text-white mt-5 text-xl font-bold">{movie.title}</h1>
-            <h1 className="text-white mt-1 text-md font-bold">
-              {movie.release}
-            </h1>
+            <h2 className="text-gray-300 text-sm">{movie.release}</h2>
+            <h3 className="text-gray-300 text-sm opacity-50">
+              {movie.duration} นาที
+            </h3>
           </div>
         ))}
       </div>
