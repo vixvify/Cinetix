@@ -32,6 +32,7 @@ export default function Movie() {
                     alt="poster"
                     key={index}
                     className="rounded-xl"
+                    priority
                   />
                 </Link>
                 <h1 className="text-white text-xl font-semibold mt-4">

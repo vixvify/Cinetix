@@ -29,6 +29,7 @@ export default function Header() {
               alt="poster"
               className="rounded-xl"
               key={index}
+              priority
             ></Image>
           ))}
         </div>

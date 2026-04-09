@@ -30,6 +30,7 @@ export default function Coming() {
                   alt="poster"
                   className="rounded-xl"
                   key={index}
+                  priority
                 />
                 <h1 className="text-white text-xl font-semibold mt-4">
                   {item.title}

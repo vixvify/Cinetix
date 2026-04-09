@@ -25,6 +25,7 @@ export default function Page() {
             height={1000}
             alt="poster"
             className="w-50 h-68 rounded-xl"
+            priority
           ></Image>
           <div className="mt-10 w-75 rounded-2xl bg-white/10 p-6 text-white backdrop-blur-md shadow-lg">
             <h2 className="mb-4 text-center text-xl font-semibold tracking-wide">

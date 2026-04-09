@@ -1,6 +1,7 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
+import { MovieData } from "@/data/mock-data";
 
 export default function page() {
   return (
@@ -12,21 +13,24 @@ export default function page() {
         </Link>
       </div>
       <div className="flex justify-center items-center flex-wrap w-[80%] gap-10 mt-20">
-        <div className="">
-          <Link href={`/pages/booking/`}>
-            <Image
-              src={
-                "https://res.cloudinary.com/dxvaplm2o/image/upload/v1765891915/movies/s0maikwbsvfg5wcev4qm.jpg"
-              }
-              width={300}
-              height={400}
-              alt="poster"
-              className="rounded-xl"
-            ></Image>
-          </Link>
-          <h1 className="text-white mt-5 text-xl font-bold">ธี่หยด 2</h1>
-          <h1 className="text-white mt-1 text-md font-bold">24/3/2026</h1>
-        </div>
+        {MovieData.map((movie, index) => (
+          <div key={index}>
+            <Link href={`/booking/${movie.id}`}>
+              <Image
+                src={movie.poster}
+                width={300}
+                height={400}
+                alt="poster"
+                className="rounded-xl"
+                priority
+              ></Image>
+            </Link>
+            <h1 className="text-white mt-5 text-xl font-bold">{movie.title}</h1>
+            <h1 className="text-white mt-1 text-md font-bold">
+              {movie.release}
+            </h1>
+          </div>
+        ))}
       </div>
     </div>
   );
