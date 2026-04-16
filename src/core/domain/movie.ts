@@ -10,5 +10,10 @@ export interface ICreateMovie {
   name: string;
   duration: number;
   release: string;
-  poster: string;
+}
+
+export interface IUpdateMovie {
+  name: string;
+  duration: number;
+  release: string;
 }
