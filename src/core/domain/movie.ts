@@ -3,12 +3,12 @@ export interface IMovies {
   name: string;
   duration: number;
   release: string;
-  imgUrl: string;
+  poster: string;
 }
 
 export interface ICreateMovie {
   name: string;
   duration: number;
   release: string;
-  imgUrl: string;
+  poster: string;
 }

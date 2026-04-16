@@ -1,5 +1,3 @@
-import { duration } from "@mui/material/styles";
-
 export const HeaderPoster = ["/avatarheader.png", "/spiderheader.png"];
 
 export const MovieData = [
@@ -167,3 +165,16 @@ export const ComingSoonData = [
     duration: 100,
   },
 ];
+
+const rows = 8;
+const seatsPerRow = 27;
+
+export const seatIds = Array.from({ length: rows }, (_, rowIndex) => {
+  const rowLetter = String.fromCharCode(65 + rowIndex);
+
+  return Array.from({ length: seatsPerRow }, (_, seatIndex) => {
+    return `${rowLetter}${seatIndex + 1}`;
+  });
+}).flat();
+
+export const showtimes = ["10:00", "13:00", "16:00", "19:00"];

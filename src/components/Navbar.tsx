@@ -22,6 +22,9 @@ export default function Navbar() {
           <Link href={"/auth/signup"}>
             <li>Sign up</li>
           </Link>
+          <Link href={"/admin"}>
+            <li>Admin</li>
+          </Link>
         </ul>
       </nav>
     </div>

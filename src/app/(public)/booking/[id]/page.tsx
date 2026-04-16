@@ -5,13 +5,24 @@ import { MdEventSeat } from "react-icons/md";
 import { useState } from "react";
 import { MovieData } from "@/data/mock-data";
 import { useParams } from "next/navigation";
+import { seatIds } from "@/data/mock-data";
+import { showtimes } from "@/data/mock-data";
+import Button from "@/components/Button";
 
 export default function Page() {
   const { id } = useParams();
-  const [seats, setseats] = useState<string[]>(new Array(200).fill("avail"));
-  const [seatsNo, setSeatsNo] = useState<number[]>([]);
+  const [seatsNo, setSeatsNo] = useState<string[]>([]);
   const [showtime, setShowTime] = useState("");
-  const showtimes = ["10:00", "13:00", "16:00", "19:00"];
+
+  const handleSelectSeat = (id: string) => {
+    const finded = seatsNo.find((e) => e === id);
+    if (finded) {
+      const filter = seatsNo.filter((e) => e !== id);
+      setSeatsNo(filter);
+    } else {
+      setSeatsNo([...seatsNo, id]);
+    }
+  };
 
   return (
     <div className="flex flex-col justify-center items-center w-full pt-10 pb-10">
@@ -27,7 +38,7 @@ export default function Page() {
             className="w-50 h-68 rounded-xl"
             priority
           ></Image>
-          <div className="mt-10 w-75 rounded-2xl bg-white/10 p-6 text-white backdrop-blur-md shadow-lg">
+          <div className="mt-10 w-75 rounded-xl bg-white/10 p-4 text-white backdrop-blur-md shadow-lg">
             <h2 className="mb-4 text-center text-xl font-semibold tracking-wide">
               Booking Summary
             </h2>
@@ -70,8 +81,12 @@ export default function Page() {
 
               <div className="flex justify-between">
                 <span className="text-white/70">Seats Number</span>
-                <span className="font-medium w-[40%] flex justify-end">
-                  {seatsNo.toString()}
+                <span className="font-medium w-[40%] flex justify-end gap-1 flex-wrap">
+                  {seatsNo.map((seat) => (
+                    <span key={seat} className="bg-gray-700 px-2 rounded">
+                      {seat}
+                    </span>
+                  ))}
                 </span>
               </div>
 
@@ -101,28 +116,35 @@ export default function Page() {
             <p className="text-white tracking-[0.45em] text-sm -mt-8">SCREEN</p>
           </div>
           <div className="flex justify-center items-center flex-wrap gap-1 mt-5 w-full ml-auto mr-auto">
-            {seats.map((e, index) => {
+            {seatIds.map((e, index) => {
+              const finded = seatsNo.find((seat) => seat === e);
               return (
                 <div className="" key={index}>
-                  <MdEventSeat color="red" className="w-6 h-6" />
+                  <MdEventSeat
+                    color={finded ? "yellow" : "red"}
+                    className="w-6 h-6"
+                    onClick={() => handleSelectSeat(e)}
+                  />
                 </div>
               );
             })}
           </div>
-          <div className="flex justify-center items-center gap-5 mt-10">
-            <div className="flex flex-col justify-center items-center border-2 border-white p-5 rounded-2xl bg-black w-38">
-              <MdEventSeat color="red" className="w-8 h-8" />
-              <h1 className="text-white mt-3">Standard Seat</h1>
-              <h1 className="text-white"> 200 baht</h1>
+          <div className="flex justify-center items-center gap-30 mt-10">
+            <div className="flex justify-center items-center gap-5">
+              <div className="flex flex-col justify-center items-center border-2 border-white p-5 rounded-2xl bg-black w-38">
+                <MdEventSeat color="red" className="w-8 h-8" />
+                <h1 className="text-white mt-3">Standard Seat</h1>
+                <h1 className="text-white"> 200 baht</h1>
+              </div>
+              <div className="flex flex-col justify-center items-center border-2 border-white p-5 rounded-2xl bg-black w-38">
+                <MdEventSeat color="purple" className="w-8 h-8" />
+                <h1 className="text-white mt-3">Premium Seat</h1>
+                <h1 className="text-white"> 230 baht</h1>
+              </div>
             </div>
-            <div className="flex flex-col justify-center items-center border-2 border-white p-5 rounded-2xl bg-black w-38">
-              <MdEventSeat color="purple" className="w-8 h-8" />
-              <h1 className="text-white mt-3">Premium Seat</h1>
-              <h1 className="text-white"> 230 baht</h1>
-            </div>
-            <button className="bg-yellow-600 text-black font-bold p-5 pl-10 pr-10 rounded-xl text-xl ml-20 hover:bg-yellow-400 disabled:opacity-20">
+            <Button className="text-white text-xl bg-yellow-600 hover:bg-white hover:text-black px-5 py-3">
               Checkout
-            </button>
+            </Button>
           </div>
         </div>
       </div>
